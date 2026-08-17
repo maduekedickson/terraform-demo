@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RiteClick Tech</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0f172a; /* Deep slate background */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+        }
+
+        .welcome-text {
+            font-size: clamp(2.5rem, 8vw, 5rem); /* Responsive sizing */
+            font-weight: 900;
+            letter-spacing: -1px;
+            
+            /* Multi-color linear gradient */
+            background: linear-gradient(
+                120deg, 
+                #ff007f, 
+                #7928ca, 
+                #00dfd8, 
+                #ff007f
+            );
+            background-size: 300% 300%;
+            
+            /* Clip background to text */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            
+            /* Continuous smooth animation */
+            animation: gradientShift 6s ease infinite;
+            
+            /* Glowing shadow effect */
+            filter: drop-shadow(0px 10px 20px rgba(0, 223, 216, 0.2));
+        }
+
+        /* Gradient shifting animation */
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="welcome-text">Welcome to RiteClick Technology</h1>
+        <h2><p class="subtitle">Innovating the future of digital solutions</p></h2>
+        <h3><p class="subtitle">Making a difference, one click at a time</p></h3>
+    </div>
+
+</body>
+</html>
