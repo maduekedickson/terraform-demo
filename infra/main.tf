@@ -42,6 +42,6 @@ resource "aws_instance" "my_ec2" {
               EOF
 
   tags = {
-    Name = "My Web Server"
+    Name = "My Red Web Server"
   }
 }
