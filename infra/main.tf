@@ -1,6 +1,6 @@
 # Create a new security group
-resource "aws_security_group" "new_sec_group" {
-  name        = "new-sec-group"
+resource "aws_security_group" "terra_sec_group" {
+  name        = "terra-sec-group"
   description = "Allow SSH and HTTP"
   vpc_id      = data.aws_vpc.default.id
 
@@ -39,7 +39,7 @@ resource "aws_instance" "my_ec2" {
   instance_type = "t3.micro"
   key_name      = "data-engr" # Use the key-pair name without .pem
 
-  vpc_security_group_ids = [aws_security_group.new_sec_group.id]
+  vpc_security_group_ids = [aws_security_group.terra_sec_group.id]
 
   user_data = <<-EOF
               #!/bin/bash
