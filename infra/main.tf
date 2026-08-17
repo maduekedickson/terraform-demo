@@ -1,36 +1,12 @@
-# Create a new security group
-resource "aws_security_group" "terraform_secu_group" {
-  name        = "terraform-secu-group"
-  description = "Allow SSH and HTTP"
-  vpc_id      = data.aws_vpc.default.id
-
-  ingress {
-    description = "SSH"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description = "HTTP"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
 # Get the default VPC
 data "aws_vpc" "default" {
   default = true
+}
+
+# Reference the existing security group by name
+data "aws_security_group" "terraform_secu_group" {
+  name   = "terraform-secu-group"
+  vpc_id = data.aws_vpc.default.id
 }
 
 # Launch EC2 instance
@@ -39,7 +15,8 @@ resource "aws_instance" "my_ec2" {
   instance_type = "t3.micro"
   key_name      = "data-engr" # Use the key-pair name without .pem
 
-  vpc_security_group_ids = [aws_security_group.terraform_secu_group.id]
+  # Use the existing security group
+  vpc_security_group_ids = [data.aws_security_group.terraform_secu_group.id]
 
   user_data = <<-EOF
               #!/bin/bash
